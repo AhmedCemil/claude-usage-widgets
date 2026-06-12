@@ -1,8 +1,12 @@
+<div align="right"><a href="README_TR.md">🇹🇷 Türkçe</a></div>
+
 # claude-usage-widgets
 
 Three tiny, always-on-top desktop widgets for **Windows 10/11** that show how much Claude
-headroom you have left — at a glance, with **zero installs**. They use only what already
-ships with Windows (.NET WinForms + `curl.exe`), no Python, no packages.
+headroom you have left — at a glance, with **zero installs**.
+
+**Runs as-is — no Python, no Node, no pip, nothing to install.** Double-click and go: the
+widgets use only what already ships with Windows (.NET WinForms + `curl.exe`).
 
 **5h** &nbsp;·&nbsp; **Context** &nbsp;·&nbsp; **Combined**
 
@@ -23,7 +27,6 @@ ships with Windows (.NET WinForms + `curl.exe`), no Python, no packages.
 Run **one** of the three — each has its own single-instance lock, so they won't stack, but
 they'd overlap on screen. Most people want **Combined** (`ccw.bat`).
 
-🇹🇷 **Türkçe:** see [README_TR.md](README_TR.md).
 
 ---
 
