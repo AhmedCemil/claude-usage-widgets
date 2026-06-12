@@ -4,6 +4,10 @@
 küçük, her zaman üstte masaüstü widget'ı — **sıfır kurulumla**. Yalnızca Windows ile gelenleri
 kullanır (.NET WinForms + `curl.exe`); Python yok, paket yok.
 
+![claude-usage-widgets — birleşik görünüm](screenshot.png)
+
+<sub>**Birleşik** widget: üstte 5 saatlik limit, altında oturum başına bağlam %'si. (Anonim örnek veri.)</sub>
+
 | Widget | Başlatma | Gösterir | `.env` gerekir mi? |
 |--------|----------|----------|--------------------|
 | **5 saat** | `cuw.bat` | Paylaşılan **5 saatlik limit %** (isteğe bağlı 7 günlük) | Evet |
