@@ -4,9 +4,15 @@
 küçük, her zaman üstte masaüstü widget'ı — **sıfır kurulumla**. Yalnızca Windows ile gelenleri
 kullanır (.NET WinForms + `curl.exe`); Python yok, paket yok.
 
-![claude-usage-widgets — birleşik görünüm](screenshot.png)
+**5 saat** &nbsp;·&nbsp; **Bağlam** &nbsp;·&nbsp; **Birleşik**
 
-<sub>**Birleşik** widget: üstte 5 saatlik limit, altında oturum başına bağlam %'si. (Anonim örnek veri.)</sub>
+![5 saat widget'ı](screenshot-5h.png)
+
+![bağlam widget'ı](screenshot-context.png)
+
+![birleşik widget](screenshot-combined.png)
+
+<sub>Birini seçin. Üstte: 5 saatlik limit. Ortada: oturum başına bağlam %'si. Altta: ikisi bir arada. (Anonim örnek veri.)</sub>
 
 | Widget | Başlatma | Gösterir | `.env` gerekir mi? |
 |--------|----------|----------|--------------------|
