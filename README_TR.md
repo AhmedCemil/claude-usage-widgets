@@ -1,8 +1,12 @@
+<div align="right"><a href="README.md">🇬🇧 English</a></div>
+
 # claude-usage-widgets
 
 **Windows 10/11** için, Claude'da ne kadar boş alanınız kaldığını bir bakışta gösteren üç
-küçük, her zaman üstte masaüstü widget'ı — **sıfır kurulumla**. Yalnızca Windows ile gelenleri
-kullanır (.NET WinForms + `curl.exe`); Python yok, paket yok.
+küçük, her zaman üstte masaüstü widget'ı — **sıfır kurulumla**.
+
+**Olduğu gibi çalışır — Python yok, Node yok, pip yok, kurulacak hiçbir şey yok.** Çift tıkla
+ve başla: widget'lar yalnızca Windows ile gelenleri kullanır (.NET WinForms + `curl.exe`).
 
 **5 saat** &nbsp;·&nbsp; **Bağlam** &nbsp;·&nbsp; **Birleşik**
 
@@ -23,7 +27,6 @@ kullanır (.NET WinForms + `curl.exe`); Python yok, paket yok.
 Üçünden **birini** çalıştırın — her birinin kendi tek-örnek kilidi vardır, üst üste binmezler
 ama ekranda çakışırlar. Çoğu kişi **Birleşik**'i (`ccw.bat`) ister.
 
-🇬🇧 **English:** see [README.md](README.md).
 
 ---
 
