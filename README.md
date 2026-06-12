@@ -10,33 +10,37 @@ widgets use only what already ships with Windows (.NET WinForms + `curl.exe`).
 
 **5h** &nbsp;·&nbsp; **Context** &nbsp;·&nbsp; **Combined**
 
-![5h widget](screenshot-5h.png)
+![5h widget](images/screenshot-5h.png)
 
-![context widget](screenshot-context.png)
+![context widget](images/screenshot-context.png)
 
-![combined widget](screenshot-combined.png)
+![combined widget](images/screenshot-combined.png)
 
-<sub>Pick one. Top: the 5-hour rate-limit. Middle: per-session context %. Bottom: both together. (Anonymized sample data.)</sub>
+<sub>Pick one. Top: the 5-hour rate-limit (with the optional **7-day** row shown). Middle:
+per-session context %. Bottom: both together. (Anonymized sample data.)</sub>
 
 | Widget | Launch | Shows | Needs `.env`? |
 |--------|--------|-------|---------------|
-| **5h** | `cuw.bat` | The shared **5-hour rate-limit %** (and optional 7-day) | Yes |
-| **Context** | `ctw.bat` | Per-session **context-window %** (how full each session's 1M window is) | No |
-| **Combined** | `ccw.bat` | Both of the above in one window | Yes |
+| **5h** | `widgets/5h/cuw.bat` | The shared **5-hour** rate-limit % **and the 7-day (weekly) limit** | Yes |
+| **Context** | `widgets/context/ctw.bat` | Per-session **context-window %** (how full each session's 1M window is) | No |
+| **Combined** | `widgets/combined/ccw.bat` | Both of the above in one window | Yes |
 
 Run **one** of the three — each has its own single-instance lock, so they won't stack, but
-they'd overlap on screen. Most people want **Combined** (`ccw.bat`).
+they'd overlap on screen. Most people want **Combined** (`widgets/combined/ccw.bat`).
 
 
 ---
 
 ## The two "walls" these track
 
-Claude has two separate limits, and these widgets show both:
+Claude has separate limits, and these widgets show them:
 
 1. **5-hour rate limit** — the shared, account-wide usage pool (`5h 42% (1h58m)`). When it
    hits 100% you're paused until it resets. The widget fetches this from claude.ai.
-2. **Context window** — how full *each individual session's* 1M-token context is
+2. **7-day (weekly) limit** — the longer rolling cap (`7d 38% (4d 6h)`), shown on the 5h and
+   combined widgets via **Show 7d**. Some accounts don't have a weekly limit; for those the
+   row reads `7d n/a`.
+3. **Context window** — how full *each individual session's* 1M-token context is
    (`Dev: 18% Access Claude chat… 180k * 2m`). When it fills, that session degrades / needs
    `/compact`. The widget reads this straight from the session transcript on disk.
 
@@ -84,8 +88,10 @@ needs none of this** — it reads local transcripts only.
 
 ### 2. Run
 
-Double-click the launcher for the widget you want: **`ccw.bat`** (combined), `cuw.bat` (5h),
-or `ctw.bat` (context). It appears top-right.
+Double-click the launcher for the widget you want, under `widgets/`:
+**`widgets/combined/ccw.bat`** (combined), `widgets/5h/cuw.bat` (5h), or
+`widgets/context/ctw.bat` (context). It appears top-right. (Each widget's `.bat`, `.vbs`, and
+`.ps1` live together in one folder — keep the trio together if you move it.)
 
 ### 3. Optional — run at startup
 
@@ -138,15 +144,24 @@ only** (no admin, nothing permanent). Always start via the **`.bat`**, not the `
 
 ---
 
-## Files
+## Layout
 
-| File | What it is |
-|------|-----------|
-| `usage-widget.ps1` + `cuw.bat`/`cuw.vbs` | 5h widget |
-| `context-widget.ps1` + `ctw.bat`/`ctw.vbs` | context widget |
-| `combined-widget.ps1` + `ccw.bat`/`ccw.vbs` | combined widget |
-| `claude_usage.env.example` | credential template (copy → `~/.claude/claude_usage.env`) |
-| `README_5h_EN.md` / `README_5h_TR.md` | deep-dive docs for the 5h widget |
+```
+claude-usage-widgets/
+├─ widgets/
+│  ├─ 5h/        usage-widget.ps1   + cuw.bat / cuw.vbs
+│  ├─ context/   context-widget.ps1 + ctw.bat / ctw.vbs
+│  └─ combined/  combined-widget.ps1 + ccw.bat / ccw.vbs
+├─ images/       screenshots
+├─ docs/         README_5h_EN.md / README_5h_TR.md  (5h deep-dive)
+├─ claude_usage.env.example   credential template (copy → ~/.claude/claude_usage.env)
+├─ README.md / README_TR.md   this file (EN / TR)
+└─ LICENSE
+```
+
+Each widget is **self-contained** in its folder (the `.bat` launches the sibling `.vbs`, which
+launches the sibling `.ps1`). Move a folder anywhere and it still works — just keep the three
+files together.
 
 Each widget runs as `powershell.exe` (no separate `.exe`). Right-click → **Quit** to close, or
 match its command line (`*combined-widget.ps1*` etc.) to force-kill just that one. Launching a
