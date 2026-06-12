@@ -4,6 +4,10 @@ Three tiny, always-on-top desktop widgets for **Windows 10/11** that show how mu
 headroom you have left — at a glance, with **zero installs**. They use only what already
 ships with Windows (.NET WinForms + `curl.exe`), no Python, no packages.
 
+![claude-usage-widgets — combined view](screenshot.png)
+
+<sub>The **combined** widget: 5-hour limit on top, then per-session context %. (Anonymized sample data.)</sub>
+
 | Widget | Launch | Shows | Needs `.env`? |
 |--------|--------|-------|---------------|
 | **5h** | `cuw.bat` | The shared **5-hour rate-limit %** (and optional 7-day) | Yes |
