@@ -1,0 +1,15 @@
+# NEVER commit real credentials — SESSION_KEY is a live login token.
+claude_usage.env
+*.env
+!*.env.example
+
+# Per-user runtime state (positions, toggles, caches)
+.usage_widget.cfg
+.context_widget.cfg
+.combined_widget.cfg
+.context_widget_cache.json
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.vscode/
