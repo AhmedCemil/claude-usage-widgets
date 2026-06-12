@@ -10,33 +10,37 @@ ve başla: widget'lar yalnızca Windows ile gelenleri kullanır (.NET WinForms +
 
 **5 saat** &nbsp;·&nbsp; **Bağlam** &nbsp;·&nbsp; **Birleşik**
 
-![5 saat widget'ı](screenshot-5h.png)
+![5 saat widget'ı](images/screenshot-5h.png)
 
-![bağlam widget'ı](screenshot-context.png)
+![bağlam widget'ı](images/screenshot-context.png)
 
-![birleşik widget](screenshot-combined.png)
+![birleşik widget](images/screenshot-combined.png)
 
-<sub>Birini seçin. Üstte: 5 saatlik limit. Ortada: oturum başına bağlam %'si. Altta: ikisi bir arada. (Anonim örnek veri.)</sub>
+<sub>Birini seçin. Üstte: 5 saatlik limit (isteğe bağlı **7 günlük** satır gösterilmiş).
+Ortada: oturum başına bağlam %'si. Altta: ikisi bir arada. (Anonim örnek veri.)</sub>
 
 | Widget | Başlatma | Gösterir | `.env` gerekir mi? |
 |--------|----------|----------|--------------------|
-| **5 saat** | `cuw.bat` | Paylaşılan **5 saatlik limit %** (isteğe bağlı 7 günlük) | Evet |
-| **Bağlam** | `ctw.bat` | Oturum başına **bağlam penceresi %** (her oturumun 1M penceresi ne kadar dolu) | Hayır |
-| **Birleşik** | `ccw.bat` | Yukarıdakilerin ikisi tek pencerede | Evet |
+| **5 saat** | `widgets/5h/cuw.bat` | Paylaşılan **5 saatlik** limit % **ve 7 günlük (haftalık) limit** | Evet |
+| **Bağlam** | `widgets/context/ctw.bat` | Oturum başına **bağlam penceresi %** (her oturumun 1M penceresi ne kadar dolu) | Hayır |
+| **Birleşik** | `widgets/combined/ccw.bat` | Yukarıdakilerin ikisi tek pencerede | Evet |
 
 Üçünden **birini** çalıştırın — her birinin kendi tek-örnek kilidi vardır, üst üste binmezler
-ama ekranda çakışırlar. Çoğu kişi **Birleşik**'i (`ccw.bat`) ister.
+ama ekranda çakışırlar. Çoğu kişi **Birleşik**'i (`widgets/combined/ccw.bat`) ister.
 
 
 ---
 
 ## Bu widget'ların izlediği iki "duvar"
 
-Claude'un birbirinden ayrı iki limiti vardır; bu widget'lar ikisini de gösterir:
+Claude'un birbirinden ayrı limitleri vardır; bu widget'lar onları gösterir:
 
 1. **5 saatlik limit** — paylaşılan, hesap geneli kullanım havuzu (`5h 42% (1h58m)`). %100'e
    ulaşınca sıfırlanana kadar duraklatılırsınız. Widget bunu claude.ai'den çeker.
-2. **Bağlam penceresi** — *her bir oturumun* 1M token'lık bağlamının ne kadar dolu olduğu
+2. **7 günlük (haftalık) limit** — daha uzun, yuvarlanan üst sınır (`7d 38% (4d 6h)`), 5 saat
+   ve birleşik widget'larda **7 günü göster** ile gösterilir. Bazı hesaplarda haftalık limit
+   yoktur; onlarda satır `7d n/a` görünür.
+3. **Bağlam penceresi** — *her bir oturumun* 1M token'lık bağlamının ne kadar dolu olduğu
    (`Dev: 18% Access Claude chat… 180k * 2m`). Dolunca o oturum bozulur / `/compact` gerekir.
    Widget bunu doğrudan diskteki oturum dökümünden okur.
 
@@ -84,8 +88,10 @@ hiçbirine ihtiyaç duymaz** — yalnızca yerel dökümleri okur.
 
 ### 2. Çalıştırın
 
-İstediğiniz widget'ın başlatıcısına çift tıklayın: **`ccw.bat`** (birleşik), `cuw.bat`
-(5 saat) veya `ctw.bat` (bağlam). Sağ üstte belirir.
+`widgets/` altında istediğiniz widget'ın başlatıcısına çift tıklayın:
+**`widgets/combined/ccw.bat`** (birleşik), `widgets/5h/cuw.bat` (5 saat) veya
+`widgets/context/ctw.bat` (bağlam). Sağ üstte belirir. (Her widget'ın `.bat`, `.vbs` ve `.ps1`
+dosyaları tek klasörde birlikte durur — taşırsanız üçlüyü birlikte tutun.)
 
 ### 3. İsteğe bağlı — açılışta çalıştır
 
@@ -140,15 +146,24 @@ zaman `.ps1` ile değil, **`.bat`** ile başlatın.
 
 ---
 
-## Dosyalar
+## Yerleşim
 
-| Dosya | Nedir |
-|-------|-------|
-| `usage-widget.ps1` + `cuw.bat`/`cuw.vbs` | 5 saat widget'ı |
-| `context-widget.ps1` + `ctw.bat`/`ctw.vbs` | bağlam widget'ı |
-| `combined-widget.ps1` + `ccw.bat`/`ccw.vbs` | birleşik widget |
-| `claude_usage.env.example` | kimlik şablonu (kopyala → `~/.claude/claude_usage.env`) |
-| `README_5h_EN.md` / `README_5h_TR.md` | 5 saat widget'ı için ayrıntılı belgeler |
+```
+claude-usage-widgets/
+├─ widgets/
+│  ├─ 5h/        usage-widget.ps1   + cuw.bat / cuw.vbs
+│  ├─ context/   context-widget.ps1 + ctw.bat / ctw.vbs
+│  └─ combined/  combined-widget.ps1 + ccw.bat / ccw.vbs
+├─ images/       ekran görüntüleri
+├─ docs/         README_5h_EN.md / README_5h_TR.md  (5 saat ayrıntılı)
+├─ claude_usage.env.example   kimlik şablonu (kopyala → ~/.claude/claude_usage.env)
+├─ README.md / README_TR.md   bu dosya (EN / TR)
+└─ LICENSE
+```
+
+Her widget kendi klasöründe **bağımsızdır** (`.bat`, kardeş `.vbs`'i başlatır, o da kardeş
+`.ps1`'i başlatır). Bir klasörü herhangi bir yere taşıyın, yine çalışır — yeter ki üç dosyayı
+birlikte tutun.
 
 Her widget `powershell.exe` olarak çalışır (ayrı bir `.exe` yok). Kapatmak için sağ tık →
 **Çıkış**, ya da yalnızca onu zorla kapatmak için komut satırını eşleştirin
