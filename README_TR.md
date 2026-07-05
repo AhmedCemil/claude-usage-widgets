@@ -182,6 +182,14 @@ bir mutex tek örneği korur.
 
 ---
 
+## Teşekkür
+
+Fikrin ve ilk çalışan prototipin sahibi
+**[Ne7erStop](https://github.com/Ne7erStop)** — ilk sürümü Python ile kendisi
+geliştirdi. Bu proje o fikirden doğdu; ilham için kendisine teşekkürler.
+
+---
+
 ## Lisans
 
 MIT — bkz. `LICENSE`.
