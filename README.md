@@ -179,6 +179,14 @@ match its command line (`*combined-widget.ps1*` etc.) to force-kill just that on
 
 ---
 
+## Credits
+
+The original idea and first working prototype came from
+**[Ne7erStop](https://github.com/Ne7erStop)**, who built the initial version in
+Python. This project grew out of that concept — thanks to him for the spark.
+
+---
+
 ## License
 
 MIT — see `LICENSE`.
